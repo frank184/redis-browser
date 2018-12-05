@@ -53,7 +53,9 @@ module RedisBrowser
 
     def browser
       conn = settings.connections[params[:connection]]
-      conn = {url: conn} unless conn.is_a?(Hash)
+      unless conn.is_a?(Hash)
+        conn = { url: conn }
+      end
       @browser ||= Browser.new(conn)
     end
   end
